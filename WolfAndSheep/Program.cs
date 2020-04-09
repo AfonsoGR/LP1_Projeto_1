@@ -11,6 +11,7 @@ namespace WolfAndSheep
             Sheep[] allSheeps = SetupSheep(board);
             Wolf wolf = new Wolf(3, 4);
 
+
             wolf.WolfOnBoard(board);
             (int, int)[] winCorridor = new (int,int)[allSheeps.Length];
 
@@ -20,13 +21,15 @@ namespace WolfAndSheep
                 allSheeps[b].SheepOnBoard(board);
             }
 
+            SetupWolf(winCorridor);
+
             //---------- See win corridors for wolf--------------
             //for (int b = 0; b < allSheeps.Length; b++)
             //{
             //    Console.WriteLine(winCorridor[b]);
             //}
 
-            while(true)
+            while (true)
             {   
                 Console.WriteLine("+-+-+-+-+-+-+-+-+");
                 for (int x = 0; x < board.BoardValues.GetLength(0); x++)
@@ -54,7 +57,7 @@ namespace WolfAndSheep
 
             int input = Convert.ToInt32(Console.ReadLine());
 
-            Sheep[] wolves = new Sheep[board.BoardValues.GetLength(1) / 2];
+            Sheep[] sheeps = new Sheep[board.BoardValues.GetLength(1) / 2];
 
             int x = input == 1 || input == 4 ? 0 : 
                 board.BoardValues.GetLength(1) - 1;
@@ -67,7 +70,7 @@ namespace WolfAndSheep
                 {
                     if (board.BoardValues[x, y] == ' ')
                     {
-                        wolves[i] = new Sheep(x, y);
+                        sheeps[i] = new Sheep(x, y);
                         i++;
                     }
                 }
@@ -75,12 +78,35 @@ namespace WolfAndSheep
                 {
                     if (board.BoardValues[y, x] == ' ')
                     {
-                        wolves[i] = new Sheep(y, x);
+                        sheeps[i] = new Sheep(y, x);
                         i++;
                     }
                 }
             }
-            return wolves;
+            return sheeps;
+        }
+
+        private static void SetupWolf((int,int)[] winCorridors)
+        {
+            int x = -1;
+            int y = -1;
+
+            if (winCorridors[0].Item1 == 0 && winCorridors[1].Item1 == 0)
+                x = 7;
+            else if (winCorridors[0].Item1 == 7 && winCorridors[1].Item1 == 7)
+                x = 0;
+            else if (winCorridors[0].Item2 == 0 && winCorridors[1].Item2 == 0)
+                y = 7;
+            else
+                y = 0;
+
+            for (int z = 0; z < winCorridors.Length; z++)
+            {
+                if (x > -1)
+                    winCorridors[z].Item1 = x;
+                if (y > -1)
+                    winCorridors[z].Item2 = y;
+            }
         }
     }
 }
