@@ -10,10 +10,10 @@ namespace WolfAndSheep
 
             (Wolf wolf, Sheep[] sheeps) things = SetupSheep(board);
 
-            Sheep[] allSheeps = things.sheeps;
+            Sheep[] allSheep = things.sheeps;
             Wolf wolf = things.wolf;
 
-            (int, int)[] winCorridor = new (int, int)[allSheeps.Length];
+            (int, int)[] winCorridor = new (int, int)[allSheep.Length];
 
             for (int b = 0; b < allSheep.Length; b++)
             {
@@ -26,7 +26,7 @@ namespace WolfAndSheep
             while (true)
             {
                 Render(board);
-                allSheeps[0].SheepMovement(board);
+                allSheep[0].SheepMovement(board);
             }
         }
         private static void Render(Board board)

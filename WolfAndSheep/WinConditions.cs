@@ -13,8 +13,9 @@ namespace WolfAndSheep
         public void SheepVictory(Board board, Wolf wolf)
         {
             // X
-<<<<<<< HEAD
-            if((wolf.xWolfPos +1 > 7 && wolf.yWolfPos +1 > 7 || 
+
+            if
+                ((wolf.xWolfPos +1 > 7 && wolf.yWolfPos +1 > 7 || 
                 board.BoardValues [wolf.xWolfPos +1, wolf.yWolfPos +1] == 'S') 
                 && (wolf.xWolfPos -1 < 0 && wolf.yWolfPos -1 < 0 ||
                 board.BoardValues [wolf.xWolfPos -1, wolf.yWolfPos -1] == 'S') 
@@ -22,18 +23,8 @@ namespace WolfAndSheep
                 board.BoardValues [wolf.xWolfPos +1, wolf.yWolfPos -1] == 'S') 
                 && (wolf.yWolfPos -1 < 0 && wolf.yWolfPos +1 > 7 ||
                 board.BoardValues [wolf.xWolfPos -1, wolf.yWolfPos +1] == 'S'))
-=======
-            if (
-                (wolf.xWolfPos + 1 > 7 && wolf.yWolfPos + 1 > 7 ||
-                board.BoardValues[wolf.xWolfPos + 1, wolf.yWolfPos + 1] == 'S')
-                && (wolf.xWolfPos - 1 < 0 && wolf.yWolfPos - 1 < 0 ||
-                board.BoardValues[wolf.xWolfPos - 1, wolf.yWolfPos - 1] == 'S')
-                && (wolf.yWolfPos + 1 > 7 && wolf.yWolfPos - 1 < 0 ||
-                board.BoardValues[wolf.xWolfPos + 1, wolf.yWolfPos - 1] == 'S')
-                && (wolf.yWolfPos - 1 < 0 && wolf.yWolfPos + 1 > 7 ||
-                board.BoardValues[wolf.xWolfPos - 1, wolf.yWolfPos + 1] == 'S'))
->>>>>>> af122f8a44da42b7808b7544837e2860dafc9016
             {
+
                 // X
                 Console.WriteLine("The Sheep have cornered the Wolf!\n"
                     + "SHEEP WIN!!!");
