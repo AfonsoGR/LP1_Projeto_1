@@ -14,8 +14,13 @@ namespace WolfAndSheep
                 for (int y = 0; y < board.BoardValues.GetLength(1); y++)
                 {
                     Console.Write('|');
-                    Console.Write(board.BoardValues[x,y]);
-                    
+                    if (board.BoardValues[x, y] == '-')
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    Console.Write(board.BoardValues[x, y]);
+                    Console.ResetColor();
+
                 }
                 Console.Write("| \n");
                 Console.WriteLine("+-+-+-+-+-+-+-+-+");
