@@ -2,51 +2,49 @@ using System;
 
 namespace WolfAndSheep
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class Wolf
+    public class Sheep
     {
         /// <summary>
-        /// Gets and Sets the value of the Wolf's X position
+        /// Gets and Sets the value of the Sheep's X position
         /// </summary>
         /// <value></value>
-        public int xWolfPos {get; set; }
+        public int xSheepPos {get; set; }
         
         /// <summary>
-        /// Gets and Sets the value of the Wolf's Y position
+        /// Gets and Sets the value of the Sheep's Y position
         /// </summary>
         /// <value></value>
-        public int yWolfPos {get; set; }
+        public int ySheepPos {get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="row"></param>
         /// <param name="column"></param>
-        public Wolf(int row = 0, int column = 0)
+        public Sheep(int row = 0, int column = 0)
         {
             // X
-            xWolfPos = row;
+            xSheepPos = row;
 
             // X
-            yWolfPos = column;
+            ySheepPos = column;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="board"></param>
-        public void WolfOnBoard(Board board)
+        public void SheepOnBoard(Board board)
         {
-            board.BoardValues [xWolfPos, yWolfPos] = 'W'; 
+            // X
+            board.BoardValues [xSheepPos, ySheepPos] = 'S'; 
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="board"></param>
-        public void WolfMovement(Board board)
+        public void SheepMovement(Board board)
         {
             // X
             Console.WriteLine("Which direction do you wish to move?\n"
@@ -57,19 +55,19 @@ namespace WolfAndSheep
             int moveChoice = int.Parse(Console.ReadLine());
 
             // X
-            board.BoardValues [xWolfPos, yWolfPos] = ' ';
+            board.BoardValues [xSheepPos, ySheepPos] = ' ';
 
             // X
             if (moveChoice == 1)
             {   
                 // X                             
-                if (xWolfPos > 0 && yWolfPos > 0)
+                if (xSheepPos > 0 && ySheepPos > 0)
                 {
                     // X
-                    xWolfPos -= 1;
+                    xSheepPos -= 1;
 
                     // X
-                    yWolfPos -= 1;
+                    ySheepPos -= 1;
                 }
                 // X
                 else
@@ -78,20 +76,20 @@ namespace WolfAndSheep
                     Console.WriteLine("You can't move there");
                     
                     // X
-                    WolfMovement(board);
+                    SheepMovement(board);
                 }
             }
             // X
             else if (moveChoice == 2)
             {
                 // X
-                if (xWolfPos > 0 && yWolfPos < 7)
+                if (xSheepPos > 0 && ySheepPos < 7)
                 {
                     // X
-                    xWolfPos -= 1;
+                    xSheepPos -= 1;
 
                     // X
-                    yWolfPos += 1;
+                    ySheepPos += 1;
                 }
                 // X
                 else
@@ -100,20 +98,20 @@ namespace WolfAndSheep
                     Console.WriteLine("You can't move there");
 
                     // X
-                    WolfMovement(board);
+                    SheepMovement(board);
                 }                
             }
             // X
             else if (moveChoice == 3)
             {
                 // X
-                if (xWolfPos < 7 && yWolfPos > 0)
+                if (xSheepPos < 7 && ySheepPos > 0)
                 {
                     // X
-                    xWolfPos += 1;
+                    xSheepPos += 1;
 
                     // X
-                    yWolfPos -= 1;
+                    ySheepPos -= 1;
                 }
                 // X
                 else
@@ -122,19 +120,19 @@ namespace WolfAndSheep
                     Console.WriteLine("You can't move there");
 
                     // X
-                    WolfMovement(board);
+                    SheepMovement(board);
                 }   
             }
             // X
             else if (moveChoice == 4)
             {
                 // X
-                if (xWolfPos < 7 && yWolfPos < 7)
+                if (xSheepPos < 7 && ySheepPos < 7)
                 {
                     // X
-                    xWolfPos += 1;
+                    xSheepPos += 1;
                     // X
-                    yWolfPos += 1;
+                    ySheepPos += 1;
                 }
                 // X
                 else
@@ -143,7 +141,7 @@ namespace WolfAndSheep
                     Console.WriteLine("You can't move there");
 
                     // X
-                    WolfMovement(board);
+                    SheepMovement(board);
                 }   
             }
             // X
@@ -153,10 +151,10 @@ namespace WolfAndSheep
                 Console.WriteLine("Please select a valid option.");
 
                 // X
-                WolfMovement(board);
+                SheepMovement(board);
             }
             // X
-            board.BoardValues [xWolfPos, yWolfPos] = 'W';
+            board.BoardValues [xSheepPos, ySheepPos] = 'S';
         }
     }
 }
