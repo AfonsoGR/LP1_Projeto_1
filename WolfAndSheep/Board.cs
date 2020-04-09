@@ -6,7 +6,7 @@ namespace WolfAndSheep
 {
     public class Board
     {
-        public char[,] BoardValues { get; }
+        public char[,] BoardValues { get; set;}
 
         public Board(int sizeX, int sizeY)
         {

@@ -8,6 +8,10 @@ namespace WolfAndSheep
         {
             Board board = new Board(8, 8);
 
+            Wolf wolf = new Wolf(0,0);
+
+            wolf.WolfOnBoard(board);
+
             Console.WriteLine("+-+-+-+-+-+-+-+-+");
             for (int x = 0; x < board.BoardValues.GetLength(0); x++)
             {
