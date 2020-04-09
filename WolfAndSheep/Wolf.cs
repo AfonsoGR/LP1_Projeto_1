@@ -39,7 +39,7 @@ namespace WolfAndSheep
         /// <param name="board"></param>
         public void WolfOnBoard(Board board)
         {
-            board.BoardValues [xWolfPos, yWolfPos] = 'W'; 
+            board.BoardValues [xWolfPos, yWolfPos] = 'W';             
         }
 
         /// <summary>

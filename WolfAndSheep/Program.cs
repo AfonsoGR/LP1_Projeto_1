@@ -8,23 +8,24 @@ namespace WolfAndSheep
         {
             Board board = new Board(8, 8);
 
-            Sheep[] allSheeps = SetupSheep(board);
+            Sheep[] allSheep = SetupSheep(board);
             Wolf wolf = new Wolf(3, 4);
 
+            WinConditions winConditions = new WinConditions();
 
             wolf.WolfOnBoard(board);
-            (int, int)[] winCorridor = new (int,int)[allSheeps.Length];
+            (int, int)[] winCorridor = new (int,int)[allSheep.Length];
 
-            for (int b = 0; b < allSheeps.Length; b++)
+            for (int b = 0; b < allSheep.Length; b++)
             {
-                winCorridor[b] = (allSheeps[b].xSheepPos, allSheeps[b].ySheepPos);
-                allSheeps[b].SheepOnBoard(board);
+                winCorridor[b] = (allSheep[b].xSheepPos, allSheep[b].ySheepPos);
+                allSheep[b].SheepOnBoard(board);
             }
 
             SetupWolf(winCorridor);
 
             //---------- See win corridors for wolf--------------
-            //for (int b = 0; b < allSheeps.Length; b++)
+            //for (int b = 0; b < allSheep.Length; b++)
             //{
             //    Console.WriteLine(winCorridor[b]);
             //}
@@ -48,7 +49,9 @@ namespace WolfAndSheep
                     Console.Write("| \n");
                     Console.WriteLine("+-+-+-+-+-+-+-+-+");
                 }
-                allSheeps[0].SheepMovement(board); 
+                allSheep[0].SheepMovement(board);
+                
+                winConditions.SheepVictory(board, wolf);     
             }
         }
         private static Sheep[] SetupSheep(Board board)
