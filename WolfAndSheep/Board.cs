@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WolfAndSheep
+﻿namespace WolfAndSheep
 {
     public class Board
     {
@@ -17,10 +13,14 @@ namespace WolfAndSheep
                 for (int y = 0; y < sizeY; y++)
                 {
                     if (((x + y) % 2) == 0)
+                    {
                         BoardValues[x, y] = '-';
+                    }
 
                     if (((x + y) % 2) != 0)
+                    {
                         BoardValues[x, y] = ' ';
+                    }
                 }
             }
         }
