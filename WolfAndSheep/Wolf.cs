@@ -63,7 +63,8 @@ namespace WolfAndSheep
             if (moveChoice == 1)
             {   
                 // X                             
-                if (xWolfPos > 0 && yWolfPos > 0)
+                if (xWolfPos > 0 && yWolfPos > 0 
+                    && board.BoardValues [xWolfPos -1, yWolfPos-1] != 'S')
                 {
                     // X
                     xWolfPos -= 1;
@@ -85,7 +86,8 @@ namespace WolfAndSheep
             else if (moveChoice == 2)
             {
                 // X
-                if (xWolfPos > 0 && yWolfPos < 7)
+                if (xWolfPos > 0 && yWolfPos < 7
+                    && board.BoardValues [xWolfPos -1, yWolfPos +1] != 'S')
                 {
                     // X
                     xWolfPos -= 1;
@@ -107,7 +109,8 @@ namespace WolfAndSheep
             else if (moveChoice == 3)
             {
                 // X
-                if (xWolfPos < 7 && yWolfPos > 0)
+                if (xWolfPos < 7 && yWolfPos > 0
+                    && board.BoardValues [xWolfPos +1, yWolfPos -1] != 'S')
                 {
                     // X
                     xWolfPos += 1;
@@ -129,7 +132,8 @@ namespace WolfAndSheep
             else if (moveChoice == 4)
             {
                 // X
-                if (xWolfPos < 7 && yWolfPos < 7)
+                if (xWolfPos < 7 && yWolfPos < 7
+                    && board.BoardValues [xWolfPos +1, yWolfPos +1] != 'S')
                 {
                     // X
                     xWolfPos += 1;
