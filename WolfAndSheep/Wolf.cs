@@ -27,5 +27,10 @@ namespace WolfAndSheep
             xWolfPos = row;
             yWolfPos = column;
         }
+
+        public void WolfOnBoard(Board board)
+        {
+            board.BoardValues [xWolfPos, yWolfPos] = 'W'; 
+        }
     }
 }
