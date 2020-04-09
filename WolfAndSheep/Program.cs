@@ -31,23 +31,28 @@ namespace WolfAndSheep
         }
         private static void Render(Board board)
         {
-            Console.WriteLine("+-+-+-+-+-+-+-+-+");
+            Console.Clear();
+            Console.WriteLine("+---+---+---+---+---+---+---+---+");
             for (int x = 0; x < board.BoardValues.GetLength(0); x++)
             {
                 for (int y = 0; y < board.BoardValues.GetLength(1); y++)
                 {
-                    Console.Write('|');
+                    Console.Write("|");
                     if (board.BoardValues[x, y] == '-')
                     {
                         Console.BackgroundColor = ConsoleColor.White;
+                        
                     }
+                    Console.Write(' ');
                     Console.Write(board.BoardValues[x, y]);
+                    Console.Write(' ');
                     Console.ResetColor();
 
                 }
                 Console.Write("| \n");
-                Console.WriteLine("+-+-+-+-+-+-+-+-+");
+                Console.WriteLine("+---+---+---+---+---+---+---+---+");
             }
+            Console.WriteLine("+-------------------------------+");
         }
         private static (Wolf,Sheep[]) SetupSheep(Board board)
         {
@@ -88,6 +93,10 @@ namespace WolfAndSheep
                 }
             }
 
+            for (int l = 0; l < sheeps.Length; l++)
+            {
+                board.BoardValues[sheeps[l].xSheepPos, sheeps[l].ySheepPos] = 'S';
+            }
             return (SetupWolf(input, board), sheeps);
         }
 
@@ -125,6 +134,17 @@ namespace WolfAndSheep
             Console.WriteLine($"1 = {position[0]} , 2 = {position[1]}," +
                 $" 3 = {position[2]}, 4 = {position[3]}");
 
+            for (int l = 0; l < position.Length; l++)
+            {
+                board.BoardValues[position[l].x, position[l].y] = (l + 1).ToString()[0];
+            }
+
+            Render(board);
+
+            for (int l = 0; l < position.Length; l++)
+            {
+                board.BoardValues[position[l].x, position[l].y] = ' ';
+            }
             while (true)
             {
                 int input = Convert.ToInt32(Console.ReadLine());
