@@ -23,9 +23,11 @@ namespace WolfAndSheep
 
             wolf.WolfOnBoard(board);
 
+            VictoryConditions vc = new VictoryConditions();
             while (true)
             {
                 Render(board);
+                vc.SheepVictory(board, wolf);
                 allSheep[0].SheepMovement(board);
             }
         }
