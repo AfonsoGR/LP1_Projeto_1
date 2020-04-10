@@ -14,9 +14,9 @@ namespace WolfAndSheep
         {
             List<(int, int)> neighbours = new List<(int, int)>();
 
-            for (int x = 0; x < board.BoardValues.GetLength(0); x++)
+            for (int x = 0; x < board.XDim; x++)
             {
-                for (int y = 0; y < board.BoardValues.GetLength(1); y++)
+                for (int y = 0; y < board.YDim; y++)
                 {
                     float distX = Math.Abs(Math.Abs(x) -
                         Math.Abs(wolf.XWolfPos));
@@ -33,8 +33,7 @@ namespace WolfAndSheep
 
             for (int k = 0; k < neighbours.Count; k++)
             {
-                if (board.BoardValues[neighbours[k].Item1, 
-                    neighbours[k].Item2] == 'S')
+                if (board[neighbours[k].Item1, neighbours[k].Item2] == 'S')
                 {
                     blockedCells++;
                 }

@@ -39,7 +39,7 @@ namespace WolfAndSheep
         /// <param name="board"></param>
         public void WolfOnBoard(Board board)
         {
-            board.BoardValues[XWolfPos, YWolfPos] = 'W';
+            board[XWolfPos, YWolfPos] = 'W';
         }
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace WolfAndSheep
             }
 
             // X
-            board.BoardValues[XWolfPos, YWolfPos] = ' ';
+            board[XWolfPos, YWolfPos] = ' ';
 
             // X
             if (moveChoice == 1)
             {
                 // X
                 if (XWolfPos > 0 && YWolfPos > 0
-                    && board.BoardValues[XWolfPos - 1, YWolfPos - 1] != 'S')
+                    && board[XWolfPos - 1, YWolfPos - 1] != 'S')
                 {
                     // X
                     XWolfPos -= 1;
@@ -92,7 +92,7 @@ namespace WolfAndSheep
             {
                 // X
                 if (XWolfPos > 0 && YWolfPos < 7
-                    && board.BoardValues[XWolfPos - 1, YWolfPos + 1] != 'S')
+                    && board[XWolfPos - 1, YWolfPos + 1] != 'S')
                 {
                     // X
                     XWolfPos -= 1;
@@ -115,7 +115,7 @@ namespace WolfAndSheep
             {
                 // X
                 if (XWolfPos < 7 && YWolfPos > 0
-                    && board.BoardValues[XWolfPos + 1, YWolfPos - 1] != 'S')
+                    && board[XWolfPos + 1, YWolfPos - 1] != 'S')
                 {
                     // X
                     XWolfPos += 1;
@@ -138,7 +138,7 @@ namespace WolfAndSheep
             {
                 // X
                 if (XWolfPos < 7 && YWolfPos < 7
-                    && board.BoardValues[XWolfPos + 1, YWolfPos + 1] != 'S')
+                    && board[XWolfPos + 1, YWolfPos + 1] != 'S')
                 {
                     // X
                     XWolfPos += 1;
@@ -156,7 +156,7 @@ namespace WolfAndSheep
                 }
             }
             // X
-            board.BoardValues[XWolfPos, YWolfPos] = 'W';
+            board[XWolfPos, YWolfPos] = 'W';
         }
     }
 }
