@@ -34,10 +34,10 @@ namespace WolfAndSheep
         /// 
         /// </summary>
         /// <param name="board"></param>
-        public void SheepOnBoard(Board board)
+        public void SheepOnBoard(Board board, char visuals = 'S')
         {
             // X
-            board.BoardValues[xSheepPos, ySheepPos] = 'S';
+            board.BoardValues[xSheepPos, ySheepPos] = visuals;
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ namespace WolfAndSheep
         private static void Main(string[] args)
         {
             Board board = new Board(8, 8);
+            VictoryConditions vc = new VictoryConditions();
 
             (Wolf wolf, Sheep[] sheeps) things = SetupSheep(board);
 
@@ -23,12 +24,21 @@ namespace WolfAndSheep
 
             wolf.WolfOnBoard(board);
 
-            VictoryConditions vc = new VictoryConditions();
             while (true)
             {
-                Render(board);
                 vc.SheepVictory(board, wolf);
+                for (int b = 0; b < allSheep.Length; b++)
+                {
+                    allSheep[b].SheepOnBoard(board, (b +1).ToString()[0]);
+                }
+                Render(board);
                 allSheep[0].SheepMovement(board);
+                for (int b = 0; b < allSheep.Length; b++)
+                {
+                    allSheep[b].SheepOnBoard(board);
+                }
+                Render(board);
+                wolf.WolfMovement(board);
             }
         }
         private static void Render(Board board)
@@ -43,7 +53,6 @@ namespace WolfAndSheep
                     if (board.BoardValues[x, y] == '-')
                     {
                         Console.BackgroundColor = ConsoleColor.White;
-                        
                     }
                     Console.Write(' ');
                     Console.Write(board.BoardValues[x, y]);
@@ -147,6 +156,7 @@ namespace WolfAndSheep
             {
                 board.BoardValues[position[l].x, position[l].y] = ' ';
             }
+
             while (true)
             {
                 int input = Convert.ToInt32(Console.ReadLine());
