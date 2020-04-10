@@ -86,7 +86,7 @@ namespace WolfAndSheep
                 }
             }
             // X
-            else if (moveChoice == 2 && (sheepDirection == 2 || sheepDirection == 3))
+            else if (moveChoice == 2 && (sheepDirection == 3 || sheepDirection == 4))
             {
                 // X
                 if (XSheepPos > 0 && YSheepPos < 7
