@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Collections;
 
 namespace WolfAndSheep
 {
     public class VictoryConditions
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="board"></param>
         /// <param name="wolf"></param>
-        /// <param name="sheep"></param>
         public void SheepVictory(Board board, Wolf wolf)
         {
             List<(int, int)> neighbours = new List<(int, int)>();
@@ -21,9 +19,9 @@ namespace WolfAndSheep
                 for (int y = 0; y < board.BoardValues.GetLength(1); y++)
                 {
                     float distX = Math.Abs(Math.Abs(x) -
-                        Math.Abs(wolf.xWolfPos));
+                        Math.Abs(wolf.XWolfPos));
                     float distY = Math.Abs(Math.Abs(y) -
-                        Math.Abs(wolf.yWolfPos));
+                        Math.Abs(wolf.YWolfPos));
 
                     if ((distX == 1 && distY == 1))
                     {
@@ -35,7 +33,8 @@ namespace WolfAndSheep
 
             for (int k = 0; k < neighbours.Count; k++)
             {
-                if (board.BoardValues[neighbours[k].Item1, neighbours[k].Item2] == 'S')
+                if (board.BoardValues[neighbours[k].Item1, 
+                    neighbours[k].Item2] == 'S')
                 {
                     blockedCells++;
                 }
@@ -51,15 +50,15 @@ namespace WolfAndSheep
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="wolf"></param>
         public void WolfVictory(Wolf wolf, (int, int)[] winCorridors)
         {
             for (int i = 0; i < winCorridors.Length; i++)
             {
-                if (winCorridors[i].Item1 == wolf.xWolfPos
-                    && winCorridors[i].Item2 == wolf.yWolfPos)
+                if (winCorridors[i].Item1 == wolf.XWolfPos
+                    && winCorridors[i].Item2 == wolf.YWolfPos)
                 {
                     Console.WriteLine("The Wolf has reached the Sheep's farm!\n"
                     + "WOLF WINS!!!");

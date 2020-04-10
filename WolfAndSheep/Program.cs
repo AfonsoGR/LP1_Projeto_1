@@ -2,7 +2,7 @@
 
 namespace WolfAndSheep
 {
-    internal class Program
+    class Program
     {
         private static void Main(string[] args)
         {
@@ -20,7 +20,7 @@ namespace WolfAndSheep
 
             for (int b = 0; b < allSheep.Length; b++)
             {
-                winCorridor[b] = (allSheep[b].xSheepPos, allSheep[b].ySheepPos);
+                winCorridor[b] = (allSheep[b].XSheepPos, allSheep[b].YSheepPos);
                 allSheep[b].SheepOnBoard(board);
             }
 
@@ -30,13 +30,19 @@ namespace WolfAndSheep
             {
                 for (int b = 0; b < allSheep.Length; b++)
                 {
-                    allSheep[b].SheepOnBoard(board, (b +1).ToString()[0]);
+                    allSheep[b].SheepOnBoard(board, (b + 1).ToString()[0]);
                 }
                 Render(board);
 
                 Console.WriteLine("Which Sheep do you want to move?\n"
                     + "1 , 2 , 3 , 4");
-                int sheepChoice = Convert.ToInt32(Console.ReadLine());
+
+                int sheepChoice;
+                while (!int.TryParse(Console.ReadLine(), out sheepChoice) ||
+                    (sheepChoice < 1 || sheepChoice > allSheep.Length - 1))
+                {
+                    ;
+                }
 
                 for (int b = 0; b < allSheep.Length; b++)
                 {
@@ -70,24 +76,26 @@ namespace WolfAndSheep
                     Console.Write(board.BoardValues[x, y]);
                     Console.Write(' ');
                     Console.ResetColor();
-
                 }
                 Console.Write("| \n");
                 Console.WriteLine("+---+---+---+---+---+---+---+---+");
             }
             Console.WriteLine("+-------------------------------+");
         }
-        private static (Wolf,Sheep[]) SetupSheep(Board board)
+
+        private static (Wolf, Sheep[]) SetupSheep(Board board)
         {
             Render(board);
 
             Console.WriteLine("Where do you want your Sheep on the board?\n"
                 + "1 = up , 2 = right, 3 = down, 4 = left");
-            int input = 0;
 
-            while (input < 1 || input > 4)
+            int input;
+
+            while (!int.TryParse(Console.ReadLine(), out input) ||
+                input < 1 || input > 4)
             {
-                input = Convert.ToInt32(Console.ReadLine());
+                ;
             }
 
             Sheep[] sheeps = new Sheep[board.BoardValues.GetLength(1) / 2];
@@ -119,7 +127,8 @@ namespace WolfAndSheep
 
             for (int l = 0; l < sheeps.Length; l++)
             {
-                board.BoardValues[sheeps[l].xSheepPos, sheeps[l].ySheepPos] = 'S';
+                board.BoardValues[sheeps[l].XSheepPos, 
+                    sheeps[l].YSheepPos] = 'S';
             }
             return (SetupWolf(input, board), sheeps);
         }
@@ -128,10 +137,11 @@ namespace WolfAndSheep
         {
             Render(board);
 
-            int x = side == 1 || side == 4 ? board.BoardValues.GetLength(1) - 1 :
-                0;
+            int x = side == 1 || side == 4 ?
+                board.BoardValues.GetLength(1) - 1 : 0;
 
-            (int x, int y)[] position = new(int,int)[board.BoardValues.GetLength(0) / 2];
+            (int x, int y)[] position = new
+                (int, int)[board.BoardValues.GetLength(0) / 2];
 
             int i = 0;
 
@@ -157,7 +167,8 @@ namespace WolfAndSheep
 
             for (int l = 0; l < position.Length; l++)
             {
-                board.BoardValues[position[l].x, position[l].y] = (l + 1).ToString()[0];
+                board.BoardValues[position[l].x, position[l].y] =
+                    (l + 1).ToString()[0];
             }
 
             Render(board);
@@ -170,12 +181,14 @@ namespace WolfAndSheep
                 board.BoardValues[position[l].x, position[l].y] = ' ';
             }
 
-            while (true)
+            int input;
+            while (!int.TryParse(Console.ReadLine(), out input) ||
+                input < 1 || input > position.Length - 1)
             {
-                int input = Convert.ToInt32(Console.ReadLine());
-
-                return new Wolf(position[input - 1].x, position[input - 1].y);
+                ;
             }
+
+            return new Wolf(position[input - 1].x, position[input - 1].y);
         }
     }
 }

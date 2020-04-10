@@ -8,40 +8,40 @@ namespace WolfAndSheep
         /// Gets and Sets the value of the Sheep's X position
         /// </summary>
         /// <value></value>
-        public int xSheepPos { get; set; }
+        public int XSheepPos { get; set; }
 
         /// <summary>
         /// Gets and Sets the value of the Sheep's Y position
         /// </summary>
         /// <value></value>
-        public int ySheepPos { get; set; }
+        public int YSheepPos { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="row"></param>
         /// <param name="column"></param>
         public Sheep(int row = 0, int column = 0)
         {
             // X
-            xSheepPos = row;
+            XSheepPos = row;
 
             // X
-            ySheepPos = column;
+            YSheepPos = column;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="board"></param>
         public void SheepOnBoard(Board board, char visuals = 'S')
         {
             // X
-            board.BoardValues[xSheepPos, ySheepPos] = visuals;
+            board.BoardValues[XSheepPos, YSheepPos] = visuals;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="board"></param>
         public void SheepMovement(Board board)
@@ -52,24 +52,29 @@ namespace WolfAndSheep
             + "3 - BottomLeft   4 - BottomRight");
 
             // X
-            int moveChoice = int.Parse(Console.ReadLine());
+            int moveChoice;
+            while (!int.TryParse(Console.ReadLine(), out moveChoice) ||
+                moveChoice < 1 || moveChoice > 4)
+            {
+                ;
+            }
 
             // X
-            board.BoardValues[xSheepPos, ySheepPos] = ' ';
+            board.BoardValues[XSheepPos, YSheepPos] = ' ';
 
             // X
             if (moveChoice == 1)
             {
-                // X                             
-                if (xSheepPos > 0 && ySheepPos > 0
-                    && board.BoardValues[xSheepPos - 1, ySheepPos - 1] != 'S'
-                    && board.BoardValues[xSheepPos - 1, ySheepPos - 1] != 'W')
+                // X
+                if (XSheepPos > 0 && YSheepPos > 0
+                    && board.BoardValues[XSheepPos - 1, YSheepPos - 1] != 'S'
+                    && board.BoardValues[XSheepPos - 1, YSheepPos - 1] != 'W')
                 {
                     // X
-                    xSheepPos -= 1;
+                    XSheepPos -= 1;
 
                     // X
-                    ySheepPos -= 1;
+                    YSheepPos -= 1;
                 }
                 // X
                 else
@@ -85,15 +90,15 @@ namespace WolfAndSheep
             else if (moveChoice == 2)
             {
                 // X
-                if (xSheepPos > 0 && ySheepPos < 7
-                    && board.BoardValues[xSheepPos - 1, ySheepPos + 1] != 'S'
-                    && board.BoardValues[xSheepPos - 1, ySheepPos + 1] != 'W')
+                if (XSheepPos > 0 && YSheepPos < 7
+                    && board.BoardValues[XSheepPos - 1, YSheepPos + 1] != 'S'
+                    && board.BoardValues[XSheepPos - 1, YSheepPos + 1] != 'W')
                 {
                     // X
-                    xSheepPos -= 1;
+                    XSheepPos -= 1;
 
                     // X
-                    ySheepPos += 1;
+                    YSheepPos += 1;
                 }
                 // X
                 else
@@ -109,15 +114,15 @@ namespace WolfAndSheep
             else if (moveChoice == 3)
             {
                 // X
-                if (xSheepPos < 7 && ySheepPos > 0
-                    && board.BoardValues[xSheepPos + 1, ySheepPos - 1] != 'S'
-                    && board.BoardValues[xSheepPos + 1, ySheepPos - 1] != 'W')
+                if (XSheepPos < 7 && YSheepPos > 0
+                    && board.BoardValues[XSheepPos + 1, YSheepPos - 1] != 'S'
+                    && board.BoardValues[XSheepPos + 1, YSheepPos - 1] != 'W')
                 {
                     // X
-                    xSheepPos += 1;
+                    XSheepPos += 1;
 
                     // X
-                    ySheepPos -= 1;
+                    YSheepPos -= 1;
                 }
                 // X
                 else
@@ -133,14 +138,14 @@ namespace WolfAndSheep
             else if (moveChoice == 4)
             {
                 // X
-                if (xSheepPos < 7 && ySheepPos < 7
-                    && board.BoardValues[xSheepPos + 1, ySheepPos + 1] != 'S'
-                    && board.BoardValues[xSheepPos + 1, ySheepPos + 1] != 'W')
+                if (XSheepPos < 7 && YSheepPos < 7
+                    && board.BoardValues[XSheepPos + 1, YSheepPos + 1] != 'S'
+                    && board.BoardValues[XSheepPos + 1, YSheepPos + 1] != 'W')
                 {
                     // X
-                    xSheepPos += 1;
+                    XSheepPos += 1;
                     // X
-                    ySheepPos += 1;
+                    YSheepPos += 1;
                 }
                 // X
                 else
@@ -153,16 +158,7 @@ namespace WolfAndSheep
                 }
             }
             // X
-            else
-            {
-                // X
-                Console.WriteLine("Please select a valid option.");
-
-                // X
-                SheepMovement(board);
-            }
-            // X
-            board.BoardValues[xSheepPos, ySheepPos] = 'S';
+            board.BoardValues[XSheepPos, YSheepPos] = 'S';
         }
     }
 }
