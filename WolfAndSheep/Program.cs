@@ -72,7 +72,7 @@ namespace WolfAndSheep
                 int sheepChoice;
                 // Asks the user for input until a viable one is given
                 while (!int.TryParse(Console.ReadLine(), out sheepChoice) ||
-                    sheepChoice < 1 || sheepChoice > allSheep.Length - 1) ;
+                    sheepChoice < 1 || sheepChoice > allSheep.Length) ;
 
                 // Checks all the sheep
                 for (int b = 0; b < allSheep.Length; b++)
@@ -82,7 +82,7 @@ namespace WolfAndSheep
                 }
 
                 // Moves the selected sheep to the wanted position
-                allSheep[sheepChoice - 1].SheepMovement(board);
+                allSheep[sheepChoice - 1].SheepMovement(board, sheepDirection);
                 // Renders the board
                 Render(board);
                 // Checks if the sheep have won
@@ -118,6 +118,8 @@ namespace WolfAndSheep
             Console.WriteLine("+-------------------------------+");
         }
 
+        private static int sheepDirection;
+
         private static (Wolf, Sheep[]) SetupSheep(Board board)
         {
             Render(board);
@@ -128,10 +130,9 @@ namespace WolfAndSheep
             int input;
 
             while (!int.TryParse(Console.ReadLine(), out input) ||
-                input < 1 || input > 4)
-            {
-                ;
-            }
+                input < 1 || input > 4);
+
+            sheepDirection = input;
 
             Sheep[] sheeps = new Sheep[board.XDim / 2];
 
