@@ -3,16 +3,16 @@ using System;
 namespace WolfAndSheep
 {
     /// <summary>
-    /// 
+    /// Displays on screen text
     /// </summary>
     public class IntroRules
     {
         /// <summary>
-        /// 
+        /// Displays text explaining the game and waits for input to proceed
         /// </summary>
         public void IR()
         {
-            //
+            // Displays text on screen
             Console.WriteLine("Welcome to Wolf & Sheep!\n" 
                 + "This is a turn-based PvP game for 2 players," 
                 + "where one controls a Wolf and the other controls the Sheep."
@@ -35,6 +35,8 @@ namespace WolfAndSheep
                 + "to move per turn;" 
                 + "\n\t- The Wolf goes first.\n\n" 
                 + "Good luck and have fun! Press any key to Start playing.");
+            
+            //Waits for play input 
             Console.Read();
         }
     }
