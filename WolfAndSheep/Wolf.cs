@@ -49,9 +49,9 @@ namespace WolfAndSheep
         public void WolfMovement(Board board)
         {
             // X
-            Console.WriteLine("Which direction do you wish to move?\n"
-            + "1 for TopLeft\t2 for TopRight\n"
-            + "3 for BottomLeft\t4 for BottomRight");
+            Console.WriteLine("Which direction do you wish to move the Wolf?\n"
+            + "1 - TopLeft   \t2 - TopRight\n"
+            + "3 - BottomLeft\t4 - BottomRight");
 
             // X
             int moveChoice = int.Parse(Console.ReadLine());
@@ -76,7 +76,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move there");
+                    Console.WriteLine("You can't move the Wolf there");
 
                     // X
                     WolfMovement(board);
@@ -99,7 +99,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move there");
+                    Console.WriteLine("You can't move the Wolf there");
 
                     // X
                     WolfMovement(board);
@@ -122,7 +122,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move there");
+                    Console.WriteLine("You can't move the Wolf there");
 
                     // X
                     WolfMovement(board);
@@ -144,7 +144,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move there");
+                    Console.WriteLine("You can't move the Wolf there");
 
                     // X
                     WolfMovement(board);

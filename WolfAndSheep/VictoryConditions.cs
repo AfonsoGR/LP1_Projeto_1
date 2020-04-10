@@ -50,11 +50,8 @@ namespace WolfAndSheep
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="board"></param>
         /// <param name="wolf"></param>
-        /// <param name="sheep"></param>
-        public void WolfVictory(Board board, Wolf wolf, Sheep sheep,
-            (int, int)[] winCorridors)
+        public void WolfVictory(Wolf wolf, (int, int)[] winCorridors)
         {
             for (int i = 0; i < winCorridors.Length; i++)
             {
