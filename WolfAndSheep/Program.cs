@@ -174,13 +174,7 @@ namespace WolfAndSheep
             {
                 int input = Convert.ToInt32(Console.ReadLine());
 
-                switch (input)
-                {
-                    case 1: return new Wolf(position[0].x, position[0].y);
-                    case 2: return new Wolf(position[1].x, position[1].y);
-                    case 3: return new Wolf(position[2].x, position[2].y);
-                    case 4: return new Wolf(position[3].x, position[3].y);
-                }
+                return new Wolf(position[input - 1].x, position[input - 1].y);
             }
         }
     }
