@@ -13,6 +13,12 @@ namespace WolfAndSheep
         /// <param name="args"> Argum </param>
         private static void Main(string[] args)
         {
+            // Creates a new Intro Rules
+            IntroRules introRules = new IntroRules();
+            
+            // Calls IR from Intro Rules
+            introRules.IR(); 
+
             // Creates a new board with the given size
             Board board = new Board(8, 8);
 
