@@ -81,7 +81,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move the Wolf there");
+                    Console.WriteLine("You can't move the Wolf there.\n");
 
                     // X
                     WolfMovement(board);
@@ -104,7 +104,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move the Wolf there");
+                    Console.WriteLine("You can't move the Wolf there.\n");
 
                     // X
                     WolfMovement(board);
@@ -127,7 +127,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move the Wolf there");
+                    Console.WriteLine("You can't move the Wolf there.\n");
 
                     // X
                     WolfMovement(board);
@@ -149,7 +149,7 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("You can't move the Wolf there");
+                    Console.WriteLine("You can't move the Wolf there.\n");
 
                     // X
                     WolfMovement(board);

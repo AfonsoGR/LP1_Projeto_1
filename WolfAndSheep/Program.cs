@@ -39,7 +39,7 @@ namespace WolfAndSheep
 
                 int sheepChoice;
                 while (!int.TryParse(Console.ReadLine(), out sheepChoice) ||
-                    (sheepChoice < 1 || sheepChoice > allSheep.Length - 1))
+                    (sheepChoice < 1 || sheepChoice > allSheep.Length))
                 {
                     ;
                 }
@@ -49,7 +49,7 @@ namespace WolfAndSheep
                     allSheep[b].SheepOnBoard(board);
                 }
 
-                allSheep[sheepChoice - 1].SheepMovement(board);
+                allSheep[sheepChoice - 1].SheepMovement(board, sheepDirection);
                 Render(board);
                 vc.SheepVictory(board, wolf);
 
@@ -83,6 +83,8 @@ namespace WolfAndSheep
             Console.WriteLine("+-------------------------------+");
         }
 
+        private static int sheepDirection;
+
         private static (Wolf, Sheep[]) SetupSheep(Board board)
         {
             Render(board);
@@ -93,10 +95,9 @@ namespace WolfAndSheep
             int input;
 
             while (!int.TryParse(Console.ReadLine(), out input) ||
-                input < 1 || input > 4)
-            {
-                ;
-            }
+                input < 1 || input > 4);
+
+            sheepDirection = input;
 
             Sheep[] sheeps = new Sheep[board.BoardValues.GetLength(1) / 2];
 

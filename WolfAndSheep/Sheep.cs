@@ -44,26 +44,25 @@ namespace WolfAndSheep
         ///
         /// </summary>
         /// <param name="board"></param>
-        public void SheepMovement(Board board)
+        public void SheepMovement(Board board, int sheepDirection)
         {
             // X
-            Console.WriteLine("Which direction do you wish to move the sheep?\n"
+            Console.WriteLine("Which direction do you wish to move the Sheep?\n"
             + "1 - TopLeft      2 - TopRight\n"
-            + "3 - BottomLeft   4 - BottomRight");
+            + "3 - BottomLeft   4 - BottomRight\n"
+            + "Keep in mind, the Sheep can't move backwards.");
 
             // X
             int moveChoice;
+
             while (!int.TryParse(Console.ReadLine(), out moveChoice) ||
-                moveChoice < 1 || moveChoice > 4)
-            {
-                ;
-            }
+                moveChoice < 1 || moveChoice > 4);
 
             // X
             board.BoardValues[XSheepPos, YSheepPos] = ' ';
 
             // X
-            if (moveChoice == 1)
+            if (moveChoice == 1 && (sheepDirection == 2 || sheepDirection == 3))
             {
                 // X
                 if (XSheepPos > 0 && YSheepPos > 0
@@ -80,14 +79,14 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("Your Sheep can't move there");
+                    Console.WriteLine("Your Sheep can't move there.\n");
 
                     // X
-                    SheepMovement(board);
+                    SheepMovement(board, sheepDirection);
                 }
             }
             // X
-            else if (moveChoice == 2)
+            else if (moveChoice == 2 && (sheepDirection == 2 || sheepDirection == 3))
             {
                 // X
                 if (XSheepPos > 0 && YSheepPos < 7
@@ -104,14 +103,14 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("Your Sheep can't move there");
+                    Console.WriteLine("Your Sheep can't move there.\n");
 
                     // X
-                    SheepMovement(board);
+                    SheepMovement(board, sheepDirection);
                 }
             }
             // X
-            else if (moveChoice == 3)
+            else if (moveChoice == 3 && (sheepDirection == 1 || sheepDirection == 2))
             {
                 // X
                 if (XSheepPos < 7 && YSheepPos > 0
@@ -128,14 +127,14 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("Your Sheep can't move there");
+                    Console.WriteLine("Your Sheep can't move there.\n");
 
                     // X
-                    SheepMovement(board);
+                    SheepMovement(board, sheepDirection);
                 }
             }
             // X
-            else if (moveChoice == 4)
+            else if (moveChoice == 4 && (sheepDirection == 1 || sheepDirection == 4))
             {
                 // X
                 if (XSheepPos < 7 && YSheepPos < 7
@@ -151,11 +150,20 @@ namespace WolfAndSheep
                 else
                 {
                     // X
-                    Console.WriteLine("Your Sheep can't move there");
+                    Console.WriteLine("Your Sheep can't move there.\n");
 
                     // X
-                    SheepMovement(board);
+                    SheepMovement(board, sheepDirection);
                 }
+            }
+            // X
+            else
+            {
+                // X
+                Console.WriteLine("Your Sheep can't move backwards.\n");
+
+                // X
+                SheepMovement(board, sheepDirection);
             }
             // X
             board.BoardValues[XSheepPos, YSheepPos] = 'S';
