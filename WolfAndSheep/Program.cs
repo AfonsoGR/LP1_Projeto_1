@@ -6,6 +6,8 @@ namespace WolfAndSheep
     {
         private static void Main(string[] args)
         {
+            Console.Title = "PLEASE END MY PAIN, I WANT TO DIE";
+
             Board board = new Board(8, 8);
             VictoryConditions vc = new VictoryConditions();
 
@@ -26,21 +28,31 @@ namespace WolfAndSheep
 
             while (true)
             {
-                vc.SheepVictory(board, wolf);
                 for (int b = 0; b < allSheep.Length; b++)
                 {
                     allSheep[b].SheepOnBoard(board, (b +1).ToString()[0]);
                 }
                 Render(board);
-                allSheep[0].SheepMovement(board);
+
+                Console.WriteLine("Which Sheep do you want to move?\n"
+                    + "1 , 2 , 3 , 4");
+                int sheepChoice = Convert.ToInt32(Console.ReadLine());
+
                 for (int b = 0; b < allSheep.Length; b++)
                 {
                     allSheep[b].SheepOnBoard(board);
                 }
+
+                allSheep[sheepChoice - 1].SheepMovement(board);
                 Render(board);
+                vc.SheepVictory(board, wolf);
+
                 wolf.WolfMovement(board);
+                Render(board);
+                vc.WolfVictory(wolf, winCorridor);
             }
         }
+
         private static void Render(Board board)
         {
             Console.Clear();
@@ -69,7 +81,8 @@ namespace WolfAndSheep
         {
             Render(board);
 
-            Console.WriteLine("1 = up , 2 = right, 3 = down, 4 = left");
+            Console.WriteLine("Where do you want your Sheep on the board?\n"
+                + "1 = up , 2 = right, 3 = down, 4 = left");
             int input = 0;
 
             while (input < 1 || input > 4)
@@ -142,15 +155,15 @@ namespace WolfAndSheep
                 }
             }
 
-            Console.WriteLine($"1 = {position[0]} , 2 = {position[1]}," +
-                $" 3 = {position[2]}, 4 = {position[3]}");
-
             for (int l = 0; l < position.Length; l++)
             {
                 board.BoardValues[position[l].x, position[l].y] = (l + 1).ToString()[0];
             }
 
             Render(board);
+
+            Console.WriteLine("Where do you wish to place the Wolf?"
+                + "\nPress 1 , 2 , 3 or 4");
 
             for (int l = 0; l < position.Length; l++)
             {
