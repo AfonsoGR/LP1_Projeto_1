@@ -44,6 +44,9 @@ namespace WolfAndSheep
             {
                 Console.WriteLine("The Sheep have cornered the Wolf!\n"
                 + "SHEEP WIN!!!");
+                Console.WriteLine("\nPress any key to exit");
+                Console.Read();
+                Environment.Exit(0);
             }
         }
 
@@ -60,6 +63,9 @@ namespace WolfAndSheep
                 {
                     Console.WriteLine("The Wolf has reached the Sheep's farm!\n"
                     + "WOLF WINS!!!");
+                    Console.WriteLine("\nPress any key to exit");
+                    Console.Read();
+                    Environment.Exit(0);
                 }
             }
         }

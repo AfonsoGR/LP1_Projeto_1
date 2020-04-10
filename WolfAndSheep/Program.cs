@@ -6,7 +6,7 @@ namespace WolfAndSheep
     {
         private static void Main(string[] args)
         {
-            Console.Title = "PLEASE END MY PAIN, I WANT TO DIE";
+            Console.Title = "Wolf & Sheep - bootleg edition";
 
             Board board = new Board(8, 8);
             VictoryConditions vc = new VictoryConditions();
