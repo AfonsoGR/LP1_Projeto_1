@@ -7,11 +7,13 @@ namespace WolfAndSheep
     /// </summary>
     class Program
     {
+        // Stores the side of the board where the sheep will be placed on
+        private static int sheepDirection;
+
         /// <summary>
         /// Game initialization and and game loop
         /// </summary>
-        /// <param name="args"> Argum </param>
-        private static void Main(string[] args)
+        private static void Main()
         {
             // Creates a new Intro Rules
             IntroRules introRules = new IntroRules();
@@ -30,6 +32,7 @@ namespace WolfAndSheep
 
             // Sets the array of sheeps to the array on boardPieces
             Sheep[] allSheep = boardPieces.sheeps;
+
             // Sets the wolf to the one on boardPieces
             Wolf wolf = boardPieces.wolf;
 
@@ -56,8 +59,10 @@ namespace WolfAndSheep
             {
                 // Moves the wolf to the wanted position
                 wolf.WolfMovement(board);
+
                 // Renders the board
                 Render(board);
+
                 // Checks if the wolf has won
                 vc.WolfVictory(wolf, winCorridor);
 
@@ -76,6 +81,7 @@ namespace WolfAndSheep
 
                 // Stores the decision of the user
                 int sheepChoice;
+
                 // Asks the user for input until a viable one is given
                 while (!int.TryParse(Console.ReadLine(), out sheepChoice) ||
                     sheepChoice < 1 || sheepChoice > allSheep.Length) ;
@@ -89,8 +95,10 @@ namespace WolfAndSheep
 
                 // Moves the selected sheep to the wanted position
                 allSheep[sheepChoice - 1].SheepMovement(board, sheepDirection);
+
                 // Renders the board
                 Render(board);
+
                 // Checks if the sheep have won
                 vc.SheepVictory(board, wolf);
             }
@@ -102,131 +110,192 @@ namespace WolfAndSheep
         /// <param name="board"> The current state of the board </param>
         private static void Render(Board board)
         {
+            // Clears the console
             Console.Clear();
-            Console.WriteLine("+---+---+---+---+---+---+---+---+");
+
+            // A loop for the width of the board
             for (int x = 0; x < board.XDim; x++)
             {
+                // Displays the middle or end of the board
+                Console.WriteLine("+---+---+---+---+---+---+---+---+");
+                // A loop for the height of the board
                 for (int y = 0; y < board.YDim; y++)
                 {
+                    // Displays a vertical bar to seperate de symbols
                     Console.Write("|");
+                    // Checks if the current piece has a dash
                     if (board[x, y] == '-')
                     {
+                        // Switches the background color to white
                         Console.BackgroundColor = ConsoleColor.White;
                     }
-                    Console.Write(' ');
-                    Console.Write(board[x, y]);
-                    Console.Write(' ');
+                    // Displays the current symbol on the board
+                    Console.Write($" {board[x, y]} ");
+
+                    // Resets the color of the background
                     Console.ResetColor();
                 }
+                // If it's at the end of the line writes an extra vertical bar
                 Console.Write("| \n");
-                Console.WriteLine("+---+---+---+---+---+---+---+---+");
+                
             }
-            Console.WriteLine("+-------------------------------+");
+            // Displays the end of the board
+            Console.WriteLine("+---+---+---+---+---+---+---+---+" +
+                              "+-------------------------------+");
         }
 
-        private static int sheepDirection;
-
+        /// <summary>
+        /// Setups the positions of the sheeps and the wolf
+        /// </summary>
+        /// <param name="board"> The current board </param>
+        /// <returns> A touple with all the sheep and a wolf </returns>
         private static (Wolf, Sheep[]) SetupSheep(Board board)
         {
+            // Renders the board
             Render(board);
 
+            // Displays the possible places to place the sheeps
             Console.WriteLine("Where do you want your Sheep on the board?\n"
                 + "1 = up , 2 = right, 3 = down, 4 = left");
 
+            // Variable for storing the input of the user
             int input;
 
+            // Asks for input while it's not the wanted input
             while (!int.TryParse(Console.ReadLine(), out input) ||
                 input < 1 || input > 4);
 
+            // Sets the sheepDirection variable the same as input
             sheepDirection = input;
 
+            // Creates an array of sheep half the size of the board width
             Sheep[] sheeps = new Sheep[board.XDim / 2];
 
+            // Creates x and gives it a value according to the input
             int x = input == 1 || input == 4 ? 0 :
                 board.YDim - 1;
 
+            // Index to store a new Sheep on the sheeps array
             int i = 0;
 
-            for (int y = 0; y < board.XDim; y++)
+            // A for loop for the height of the board
+            for (int y = 0; y < board.YDim; y++)
             {
+                // Checks if the choosen side is up or down
                 if (input == 1 || input == 3)
                 {
+                    // checks if the board is an empty space
                     if (board[x, y] == ' ')
                     {
+                        // Creates a new sheep at the given x and y position
                         sheeps[i] = new Sheep(x, y);
+                        // Increments the Index i by one
                         i++;
                     }
                 }
+                // If it's left or right flips the x and y
                 else
                 {
+                    // checks if the board is an empty space
                     if (board[y, x] == ' ')
                     {
+                        // Creates a new sheep at the given x and y position
                         sheeps[i] = new Sheep(y, x);
+                        // Increments the Index i by one
                         i++;
                     }
                 }
             }
 
+            // Checks all the sheep on the sheeps array
             for (int l = 0; l < sheeps.Length; l++)
             {
-                board[sheeps[l].XSheepPos,
-                    sheeps[l].YSheepPos] = 'S';
+                // Sets the board visual to S where the current sheep is
+                board[sheeps[l].XSheepPos, sheeps[l].YSheepPos] = 'S';
             }
+
+            // Gets a wolf from SetupWolf and returns it with the sheeps array 
             return (SetupWolf(input, board), sheeps);
         }
 
+        /// <summary>
+        /// Creates a new wolf at the desired position
+        /// </summary>
+        /// <param name="side"> The side the player put the sheep on </param>
+        /// <param name="board"> The current board </param>
+        /// <returns> A new wolf </returns>
         private static Wolf SetupWolf(int side, Board board)
         {
+            // Renders the board
             Render(board);
 
-            int x = side == 1 || side == 4 ?
-                board.XDim - 1 : 0;
+            // Creates x and gives it a value according to the input
+            int x = side == 1 || side == 4 ? board.XDim - 1 : 0;
 
-            (int x, int y)[] position = new
-                (int, int)[board.XDim / 2];
+            // Array of positions where the player can place the wolf
+            (int x, int y)[] position = new (int, int)[board.XDim / 2];
 
+            // Index to store a new Sheep on the sheeps array
             int i = 0;
 
+            // A for loop for the height of the board
             for (int y = 0; y < board.YDim; y++)
             {
+                // Checks if the choosen side is up or down
                 if (side == 1 || side == 3)
                 {
+                    // checks if the board is an empty space
                     if (board[x, y] == ' ')
                     {
+                        // Assigns the postion at the index the x and y
                         position[i] = (x, y);
+                        // Increments the Index i by one
                         i++;
                     }
                 }
+                // If it's left or right flips the x and y
                 else
                 {
+                    // checks if the board is an empty space
                     if (board[y, x] == ' ')
                     {
+                        // Assigns the postion at the index the x and y
                         position[i] = (y, x);
+                        // Increments the Index i by one
                         i++;
                     }
                 }
             }
 
+            // Checks all the positions on the positions array
             for (int l = 0; l < position.Length; l++)
             {
-                board[position[l].x, position[l].y] =
-                    (l + 1).ToString()[0];
+                // Sets the board visual to a number for each position
+                board[position[l].x, position[l].y] = (l + 1).ToString()[0];
             }
 
+            // Renders the board
             Render(board);
 
+            // Display information to the user
             Console.WriteLine("Where do you wish to place the Wolf?"
                 + "\nPress 1 , 2 , 3 or 4");
 
+            // Checks all the positions on the positions array
             for (int l = 0; l < position.Length; l++)
             {
+                // Resets the previous set visuals to an empty space
                 board[position[l].x, position[l].y] = ' ';
             }
 
+            // Creates a variable to store the player input
             int input;
+
+            // Asks for input while it's not the wanted input
             while (!int.TryParse(Console.ReadLine(), out input) ||
                 input < 1 || input > position.Length) ;
 
+            // Returns a wolf the a the position choosen by the player
             return new Wolf(position[input - 1].x, position[input - 1].y);
         }
     }
