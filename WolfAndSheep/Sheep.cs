@@ -20,16 +20,16 @@ namespace WolfAndSheep
         public int YSheepPos { get; set; }
 
         /// <summary>
-        /// Method for the Sheep's Position
+        /// Constructor for creating a new Sheep
         /// </summary>
-        /// <param name="row"> Sheep's X position on the board </param>
-        /// <param name="column"> Sheep's Y position on the board </param>
+        /// <param name="row"> Sheep's X position </param>
+        /// <param name="column"> Sheep's Y position </param>
         public Sheep(int row = 0, int column = 0)
         {
-            // Sheep's X position in the game board
+            // Sheep's X position
             XSheepPos = row;
 
-            // Sheep's Y position in the game board
+            // Sheep's Y position
             YSheepPos = column;
         }
 

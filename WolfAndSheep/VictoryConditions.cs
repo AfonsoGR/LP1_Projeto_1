@@ -15,41 +15,41 @@ namespace WolfAndSheep
         /// <param name="wolf"> Current state of the Wolf </param>
         public void SheepVictory(Board board, Wolf wolf)
         {
-            // 
+            // Saves Wolf's neighbours on the board
             List<(int, int)> neighbours = new List<(int, int)>();
 
-            // X
+            // Checks the spaces along the width of the board
             for (int x = 0; x < board.XDim; x++)
             {
-                //X
+                // Checks the spaces along the height of the board
                 for (int y = 0; y < board.YDim; y++)
                 {
-                    // X
+                    // Converts negative values to positive values in the X axis
                     float distX = Math.Abs(Math.Abs(x) -
                         Math.Abs(wolf.XWolfPos));
 
-                    // X
+                    // Converts negative values to positive values in the Y axis
                     float distY = Math.Abs(Math.Abs(y) -
                         Math.Abs(wolf.YWolfPos));
 
-                    // X
+                    // Checks if the diagonal is adjacent to the current Wolf
                     if ((distX == 1 && distY == 1))
                     {
-                        // X
+                        // Adds neighbour to List
                         neighbours.Add((x, y));
                     }
                 }
             }
-            // X
+            // Int to save blockedCells value
             int blockedCells = 0;
 
-            // X
+            // Checks if the Wolf's surrounding cells are blocked
             for (int k = 0; k < neighbours.Count; k++)
             {
-                // X
+                // Checks if neighbour cell is a Sheep
                 if (board[neighbours[k].Item1, neighbours[k].Item2] == 'S')
                 {
-                    // X
+                    // Increments blockedCells
                     blockedCells++;
                 }
             }
@@ -73,12 +73,13 @@ namespace WolfAndSheep
         /// Method that manages the Wolf's victory conditions
         /// </summary>
         /// <param name="wolf"> Current state of the Wolf </param>
+        /// <param name="winCorridors"> Wolf victory positions </param>
         public void WolfVictory(Wolf wolf, (int, int)[] winCorridors)
         {
-            // X
+            // Goes through the winCorridors array
             for (int i = 0; i < winCorridors.Length; i++)
             {
-                // Checks specified conditions to see if Wolf has won
+                // Checks if the Wolf is at the given winCorridor
                 if (winCorridors[i].Item1 == wolf.XWolfPos
                     && winCorridors[i].Item2 == wolf.YWolfPos)
                 {
