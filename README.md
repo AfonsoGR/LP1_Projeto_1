@@ -38,24 +38,39 @@ no funcionamento das suas classes e verificou a documentação das mesmas.
 
 ### Repositório
 
-<https://github.com/AfonsoGR/LP1_Projeto_1.git>
+<https://github.com/AfonsoGR/LP1_Projeto_1>
 
 ## Arquitetura da solução
 
 ### Descrição da solução
 
 O programa foi organizado em seis classes diferentes, cada uma responsável por
-uma parte específica do programa. A base do programa é a "Board" que serve como
-meio de interação entre o "Wolf" e as "Sheep".
+uma parte específica do programa. A base do programa é a `Board.cs` que serve
+como meio de interação entre o `Wolf.cs` e as `Sheep.cs`.
 
-O "Program" contém as regras e o "setup" inicial do jogo, utilizando para este
-a "Board", o "Wolf" e a "Sheep". No decorrer do jogo o "Program" utiliza o
-"VictoryConditions" para verificar se já há um vencedor entre o "Wolf" e as
-"Sheep".
+O `Program.cs` contém as regras e o "setup" inicial do jogo, utilizando para
+este a `Board.cs`, o `Wolf.cs` e a `Sheep.cs`. No decorrer do jogo o
+`Program.cs` utiliza o `VictoryConditions.cs` para verificar se já há um
+vencedor entre o `Wolf.cs` e as `Sheep.cs`.
 
-Também contém o método "Render" para mostrar o estado atual do tabuleiro aos
+Também contém o método `Render()` para mostrar o estado atual do tabuleiro aos
 jogadores, o qual é atualizado sempre que é efetuada uma jogada.
 
 ### Fluxograma
 
 ![Fluxograma](Fluxograma.png)
+
+## Referências
+
+Foi usado um README.md de referência de um projeto do aluno, André Vitorino,
+para ter exemplos concretos de "markdown".
+
+[Projeto de referência](https://github.com/Xx-hugo-xX/LP2_P2/tree/master) do
+"markdown".
+
+O algoritmo usado para encontrar os vizinhos de uma peça no tabuleiro é baseado
+num algoritmo presente no projeto de DJD3 destes dois elementos do grupo, sendo
+o aluno André Vitorino o responsável pela realização do algoritmo.
+
+[Projeto de referência](https://github.com/Freeze88-2/MedievalGhostbuster)
+com o algoritmo em questão.
