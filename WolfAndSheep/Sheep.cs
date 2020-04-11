@@ -3,7 +3,7 @@ using System;
 namespace WolfAndSheep
 {
     /// <summary>
-    /// Creates Sheep base value and manages their movement
+    /// Setup Sheep to be placed on the board and manages their movement
     /// </summary>
     public class Sheep
     {
@@ -20,7 +20,7 @@ namespace WolfAndSheep
         public int YSheepPos { get; set; }
 
         /// <summary>
-        /// Constructor for the Sheep's Position
+        /// Method for the Sheep's Position
         /// </summary>
         /// <param name="row"> Sheep's X position on the board </param>
         /// <param name="column"> Sheep's Y position on the board </param>
@@ -34,7 +34,7 @@ namespace WolfAndSheep
         }
 
         /// <summary>
-        /// Displays an 'S' on the Sheep's position on the board
+        /// Method that displays an 'S' on the Sheep's position on the board
         /// </summary>
         /// <param name="board"> Current state of the board </param>
         public void SheepOnBoard(Board board, char visuals = 'S')
@@ -44,7 +44,7 @@ namespace WolfAndSheep
         }
 
         /// <summary>
-        /// Manages Sheep's movement
+        /// Method that manages the Sheep's movement
         /// </summary>
         /// <param name="board"> Current state of the board </param>
         public void SheepMovement(Board board, int sheepDirection)
@@ -69,7 +69,7 @@ namespace WolfAndSheep
             // Moves Sheep if choice is viable or asks user for another choice
             if (moveChoice == 1 && (sheepDirection == 2 || sheepDirection == 3))
             {
-                // Moves Sheep in desired direction if conditions allow it
+                // Checks if the Sheep can move in the specified direction
                 if (XSheepPos > 0 && YSheepPos > 0
                     && board[XSheepPos - 1, YSheepPos - 1] != 'S'
                     && board[XSheepPos - 1, YSheepPos - 1] != 'W')
@@ -80,13 +80,13 @@ namespace WolfAndSheep
                     // Reduces Sheep's Y position by 1
                     YSheepPos -= 1;
                 }
-                // Prompts user to choose again due to conditions not being met
+                // The movement choice isn't valid
                 else
                 {
                     // Displays text saying that the choice isn't possible
                     Console.WriteLine("Your Sheep can't move there.\n");
 
-                    // Prompts user to choose movement direction again
+                    // Prompts user to choose movement option again
                     SheepMovement(board, sheepDirection);
                 }
             }
@@ -95,7 +95,7 @@ namespace WolfAndSheep
             else if (moveChoice == 2 && 
                 (sheepDirection == 3 || sheepDirection == 4))
             {
-                // Moves Sheep in desired direction if conditions allow it
+                // Checks if the Sheep can move in the specified direction
                 if (XSheepPos > 0 && YSheepPos < 7
                     && board[XSheepPos - 1, YSheepPos + 1] != 'S'
                     && board[XSheepPos - 1, YSheepPos + 1] != 'W')
@@ -106,13 +106,13 @@ namespace WolfAndSheep
                     // Increases Sheep's Y position by 1
                     YSheepPos += 1;
                 }
-                // Prompts user to choose again due to conditions not being met
+                // The movement choice isn't valid
                 else
                 {
                     // Displays text saying that the choice isn't possible
                     Console.WriteLine("Your Sheep can't move there.\n");
 
-                    // Prompts user to choose movement direction again
+                    // Prompts user to choose movement option again
                     SheepMovement(board, sheepDirection);
                 }
             }
@@ -121,7 +121,7 @@ namespace WolfAndSheep
             else if (moveChoice == 3 
                 && (sheepDirection == 1 || sheepDirection == 2))
             {
-                // Moves Sheep in desired direction if conditions allow it
+                // Checks if the Sheep can move in the specified direction
                 if (XSheepPos < 7 && YSheepPos > 0
                     && board[XSheepPos + 1, YSheepPos - 1] != 'S'
                     && board[XSheepPos + 1, YSheepPos - 1] != 'W')
@@ -132,13 +132,13 @@ namespace WolfAndSheep
                     // Increases Sheep's X position by 1
                     YSheepPos -= 1;
                 }
-                // Prompts user to choose again due to conditions not being met
+                // The movement choice isn't valid
                 else
                 {
                     // Displays text saying that the choice isn't possible
                     Console.WriteLine("Your Sheep can't move there.\n");
 
-                    // Prompts user to choose movement direction again
+                    // Prompts user to choose movement option again
                     SheepMovement(board, sheepDirection);
                 }
             }
@@ -147,7 +147,7 @@ namespace WolfAndSheep
             else if (moveChoice == 4 
                 && (sheepDirection == 1 || sheepDirection == 4))
             {
-                // Moves Sheep in desired direction if conditions allow it
+                // Checks if the Sheep can move in the specified direction
                 if (XSheepPos < 7 && YSheepPos < 7
                     && board[XSheepPos + 1, YSheepPos + 1] != 'S'
                     && board[XSheepPos + 1, YSheepPos + 1] != 'W')
@@ -157,26 +157,25 @@ namespace WolfAndSheep
                     // Increases Sheep's Y position by 1
                     YSheepPos += 1;
                 }
-                // Prompts user to choose again due to conditions not being met
+                // The movement choice isn't valid
                 else
                 {
                     // Displays text saying that the choice isn't possible
                     Console.WriteLine("Your Sheep can't move there.\n");
 
-                    // Prompts user to choose movement direction again
+                    // Prompts user to choose movement option again
                     SheepMovement(board, sheepDirection);
                 }
             }
             // Prompts user to choose another movement choice 
-            // Since Sheep can't move backwards
             else
             {
                 // Displays text saying that the choice isn't possible
                 Console.WriteLine("Your Sheep can't move backwards.\n");
 
-                // Prompts user to choose movement direction again
+                // Prompts user to choose movement option again
                 SheepMovement(board, sheepDirection);
-            }
+            }            
             // Replaces the empty space in the new position with an 'S'
             board[XSheepPos, YSheepPos] = 'S';
         }
