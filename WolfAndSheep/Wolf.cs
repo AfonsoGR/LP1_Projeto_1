@@ -16,20 +16,20 @@ namespace WolfAndSheep
         /// <summary>
         /// Gets and Sets the value of the Wolf's Y position
         /// </summary>
-        /// <value> Value of Wolf's X position </value>
+        /// <value> Value of Wolf's Y position </value>
         public int YWolfPos { get; set; }
 
         /// <summary>
-        /// Method for the Wolf's position
+        /// Constructor for creating a new Wolf
         /// </summary>
-        /// <param name="row"> Wolf's X position on the board </param>
-        /// <param name="column"> Wolf's Y position on the board </param>
+        /// <param name="row"> Wolf's X position </param>
+        /// <param name="column"> Wolf's Y position </param>
         public Wolf(int row = 0, int column = 0)
         {
-            // Wolf's X position in the game board
+            // Wolf's X position
             XWolfPos = row;
 
-            // Wolf's X position in the game board
+            // Wolf's Y position
             YWolfPos = column;
         }
 
@@ -39,7 +39,7 @@ namespace WolfAndSheep
         /// <param name="board"> Current state of the board </param>
         public void WolfOnBoard(Board board)
         {
-            // Displays '~W' on Sheep's position
+            // Displays 'W' on the Wolf's position on the board
             board[XWolfPos, YWolfPos] = 'W';
         }
 
@@ -49,7 +49,7 @@ namespace WolfAndSheep
         /// <param name="board"> Current state of the board </param>
         public void WolfMovement(Board board)
         {
-            // Displays Wolf's movement options
+            // Displays the Wolf's movement options
             Console.WriteLine("Which direction do you wish to move the Wolf?\n"
             + "1 - TopLeft   \t2 - TopRight\n"
             + "3 - BottomLeft\t4 - BottomRight");
